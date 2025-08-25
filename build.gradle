@@ -6,11 +6,12 @@ plugins {
 
 group = 'edu.carroll'
 version = '0.0.1-SNAPSHOT'
-description = 'CS341 project for Spring Boot'
+description = 'C' +
+        'S341 project for Spring Boot'
 
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(21)
+		languageVersion = JavaLanguageVersion.of(17)
 	}
 }
 
