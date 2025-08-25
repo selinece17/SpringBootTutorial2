@@ -1,12 +1,11 @@
 package edu.carroll.cs341_demo;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
+import org.springframework.stereotype.Controller;
+@Controller
 public class HelloController {
     @GetMapping("/hello")
     public String index() {
-        return "Hello from Spring Boot!";
+        return "index";
     }
 }
