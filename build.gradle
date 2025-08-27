@@ -26,6 +26,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 }
+// Serve resources directly from src/main/resources during bootRun
+tasks.named('bootRun') {
+    sourceResources sourceSets.main
+}
 
 tasks.named('test') {
 	useJUnitPlatform()
