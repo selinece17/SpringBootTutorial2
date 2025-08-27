@@ -21,6 +21,7 @@ public class LoginController {
     public LoginController(LoginService loginService) {
         this.loginService = loginService;
     }
+
     @GetMapping("/login")
     public String loginGet(Model model) {
         model.addAttribute("loginForm", new LoginForm());
@@ -28,16 +29,21 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String loginPost(@Valid @ModelAttribute LoginForm loginForm, BindingResult result, RedirectAttributes attrs) {
+    public String loginPost(@Valid @ModelAttribute("loginForm") LoginForm form,
+                            BindingResult result,
+                            RedirectAttributes attrs) {
         if (result.hasErrors()) {
             return "login";
         }
 
-        if (!loginService.validateUser(loginForm)) {
-            result.addError(new ObjectError("globalError", "Username and password do not match known users"));
+        boolean ok = loginService.validateUser(form.getUsername(), form.getPassword());
+        if (!ok) {
+            result.addError(new ObjectError("globalError",
+                    "Username and password do not match known users"));
             return "login";
         }
-        attrs.addAttribute("username", loginForm.getUsername());
+
+        attrs.addAttribute("username", form.getUsername()); // or addFlashAttribute(...)
         return "redirect:/loginSuccess";
     }
 
@@ -45,10 +51,5 @@ public class LoginController {
     public String loginSuccess(@RequestParam String username, Model model) {
         model.addAttribute("username", username);
         return "loginSuccess";
-    }
-
-    @GetMapping("/loginFailure")
-    public String loginFailure() {
-        return "loginFailure";
     }
 }

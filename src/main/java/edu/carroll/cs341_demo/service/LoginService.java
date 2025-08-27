@@ -2,11 +2,13 @@ package edu.carroll.cs341_demo.service;
 
 import edu.carroll.cs341_demo.web.form.LoginForm;
 
+
+
 public interface LoginService {
     /**
-     * Given a loginForm, determine if the information provided is valid, and the user exists in the system.
-     * @param loginForm - Data containing user login information, such as username and password.
-     * @return true if data exists and matches what's on record, false otherwise
+     * @param username raw username from the client
+     * @param password raw password from the client
+     * @return true if credentials match a known user
      */
-    boolean validateUser(LoginForm loginForm);
+    boolean validateUser(String username, String password);
 }
