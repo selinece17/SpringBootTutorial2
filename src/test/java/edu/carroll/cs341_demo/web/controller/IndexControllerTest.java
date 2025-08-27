@@ -1,4 +1,5 @@
-package edu.carroll.cs341_demo.controller;
+package edu.carroll.cs341_demo.web.controller;
+
 
 import static org.hamcrest.Matchers.containsString;
 
